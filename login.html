@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            /* display: grid;
+            place-items: center; */
+            margin: 0px auto;
+            width: 400px;
+            height: auto;
+           border: .1rem solid rgba(0, 0, 0, .1);
+            /* text-align: center; */
+            padding: 20px;
+        } 
+        .formlogin h1{
+           text-align: center;
+        }
+        .formlogin{
+             display: flex;
+             flex-direction: column;
+             gap: 5px;
+             width: auto;
+        }
+        .formlogin label{
+            font-size:18px;
+        }
+        .signupbtn{
+            width: 120px;
+            margin-left: 150px;
+            border-radius: 10px;
+            background-color: orangered;
+            color: aliceblue;
+            height: 25px;
+            font-weight: 800;
+        }
+        #footer1{
+                text-align: center;
+            font-size: 14px;    
+            color: rgba(167, 15, 15, 0.804);
+        }
+        .logbtn{
+            width: 100px;
+            margin-left: 4px;
+            border-radius: 10px;
+            background-color: orangered;
+            color: aliceblue;
+            height: 25px;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="back()">Go back</button>
+    <div class="container" id="login">
+        <form class="formlogin" >
+            <h1>Make payment</h1>
+            <label for="">Name:</label> 
+            <input type="text" id="name" placeholder="enter name" required><br>
+            <label for="">Payment Mode:</label> 
+            <select name="dropdown">
+                <option value="">select</option>
+                <option value="">Cash on delivery</option>
+                <option value="new delhi">UPI Id</option>
+                <option value="India">Add cards</option>
+                <option value="paris">Credit card</option>
+                <option value="newyork">Pay Later</option>
+                </select><br>
+                <label for="">Address:</label> 
+            <input type="text" id="address" placeholder="enter address"><br>
+             <label for="">Password:</label>
+            <input type="password" id="password" placeholder="Enter your password" required><br>
+            <button class="signupbtn" id="signupbtn">conform-order</button>
+            <p id="footer1">Don't have an account?<button class="logbtn">Signup</button></p>
+        </form>
+    </div>
+    <script>
+        function back() {
+    window.location.href="index.html"
+}
+
+
+//function to shows order sucessfully 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const conformOrderBtn = document.getElementById('signupbtn');
+    conformOrderBtn.addEventListener('click', () => {
+        if (validateForm()) {
+            showAlert();
+            clearCart();
+        } else {
+            alert('Please fill the all required fields.');
+        }
+        function validateForm() {
+    const name = document.getElementById('name').value;
+    const paymentMode = document.querySelector('select[name="dropdown"]').value;
+    const address = document.getElementById('address').value;
+    const password = document.getElementById('password').value;
+    if (name && paymentMode && address && password) {
+        return true;
+    }
+    return false;
+}
+function showAlert() {
+    alert('Order placed successfully!');
+}
+    });
+});
+
+// function to clear all cart items when order is placed
+function clearCart() {
+    localStorage.removeItem('cartItem');
+}
+    </script>
+</body>
+</html>
